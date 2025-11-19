@@ -1,0 +1,59 @@
+## COMMON PATTERNS
+
+### CRUD Service Operations
+
+- **create** → `services/[entity]/create/index.ts`
+- **get** (single) → `services/[entity]/get/index.ts`
+- **find** (multiple with filters) → `services/[entity]/find/index.ts`
+- **update** → `services/[entity]/update/index.ts`
+- **delete** → `services/[entity]/delete/index.ts`
+
+### Service with Transaction
+
+```tsx
+import mongoose from 'mongoose';
+
+const processPayment = async (input: ProcessPaymentInput): Promise<ProcessPaymentOutput> => {
+  const session = await mongoose.startSession();
+  session.startTransaction();
+
+  try {
+    // Operations with { session }
+    await operation1({ session });
+    await operation2({ session });
+
+    await session.commitTransaction();
+    return result;
+  } catch (error) {
+    await session.abortTransaction();
+    throw error;
+  } finally {
+    session.endSession();
+  }
+};
+
+```
+
+### Service Orchestration
+
+```tsx
+// When a service needs to call multiple services
+import getProduct from '@services/products/get';
+import createPayment from '@services/payments/create';
+
+const processOrder = async (input: ProcessOrderInput) => {
+  // Call other services
+  const product = await getProduct({ id: input.productId });
+  const payment = await createPayment({ /* ... */ });
+
+  // Business logic
+  if (!product.inStock) {
+    throwBadRequestError({ message: 'Product out of stock' });
+  }
+
+  return { product, payment };
+};
+
+export default processOrder;
+
+```

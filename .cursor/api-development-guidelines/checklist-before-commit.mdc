@@ -1,0 +1,32 @@
+## QUICK CHECKS BEFORE COMMITTING
+
+**For Models:**
+
+- [ ]  Interface has `I` prefix
+- [ ]  timestamps: true
+- [ ]  Explicit collection name
+- [ ]  Indexes on frequently queried fields
+- [ ]  Validation messages on all required fields
+
+**For Services:**
+
+- [ ]  Explicit return type
+- [ ]  Named export
+- [ ]  Custom errors (never mongoose errors)
+- [ ]  Uses `.exec()` on queries
+- [ ]  No req/res access
+
+**For Endpoints:**
+
+- [ ]  Three files: types.ts, schema.ts, handler.ts
+- [ ]  Uses matchedData()
+- [ ]  Calls ONE service only
+- [ ]  Try-catch with next(error)
+- [ ]  Router has checkSchema + schemaCheck
+
+**For All Code:**
+
+- [ ]  Path aliases used
+- [ ]  No default exports
+- [ ]  Explicit returns
+- [ ]  TypeScript strict mode compliant

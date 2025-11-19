@@ -1,0 +1,12 @@
+## PATH ALIASES (Always use these)
+
+```tsx
+@models      → src/database/models
+@services    → src/api/services
+@errors      → src/api/lib/errors
+@middlewares → src/api/lib/middlewares
+@logs        → src/api/lib/logs
+@envs        → src/api/lib/environment
+@utils       → src/api/lib/utils
+
+```

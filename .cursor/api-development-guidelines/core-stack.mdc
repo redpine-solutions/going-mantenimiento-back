@@ -1,0 +1,7 @@
+## CORE STACK
+
+- **Runtime**: Node.js with TypeScript 5.9+
+- **Framework**: Express 5.x
+- **Database**: MongoDB 6.5+ with Mongoose 8.3+
+- **Validation**: express-validator 7.3+
+- **Module System**: CommonJS with path aliases

@@ -1,0 +1,185 @@
+## FILE STRUCTURE PATTERNS
+
+### Creating a Model
+
+```tsx
+// database/models/Product.ts
+import { type Document, model, Schema } from 'mongoose';
+
+interface IProduct extends Document {
+  name: string;
+  price: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const productSchema = new Schema<IProduct>(
+  {
+    name: {
+      type: String,
+      required: [true, 'Product name is required'],
+      trim: true,
+    },
+    price: {
+      type: Number,
+      required: [true, 'Price is required'],
+      min: [0, 'Price cannot be negative'],
+    },
+  },
+  { timestamps: true, collection: 'products' }
+);
+
+productSchema.index({ name: 1 });
+
+const Product = model<IProduct>('Product', productSchema);
+
+export default Product;
+export type { IProduct };
+
+```
+
+### Creating a Service
+
+```tsx
+// services/products/get/index.ts
+import Product from '@models/Product';
+import { throwNotFoundError } from '@errors/throwers/throwNotFoundError';
+import { type IProduct } from '@models/Product';
+import { type Document } from 'mongoose';
+
+interface GetProductByIdInput {
+  id: string;
+}
+
+const getProductById = async (input: GetProductByIdInput): Promise<Document & IProduct> => {
+  const product = await Product.findById(input.id).exec();
+
+  if (!product) {
+    throwNotFoundError({
+      message: `Product with id ${input.id} not found`,
+      details: { productId: input.id },
+    });
+  }
+
+  return product;
+};
+
+export default getProductById;
+
+```
+
+### Creating an Endpoint
+
+**Structure**: `routes/[entity]/[operation]/` with 3 files:
+
+**1. types.ts** - DTO definition
+
+```tsx
+interface CreateProductRequestDTO {
+  name: string;
+  price: number;
+  description?: string;
+}
+
+export type { CreateProductRequestDTO };
+
+```
+
+**2. schema.ts** - Validation
+
+```tsx
+import { type Schema } from 'express-validator';
+
+export const createProductSchema: Schema = {
+  name: {
+    in: 'body',
+    isString: { errorMessage: 'name must be a string' },
+    trim: true,
+    notEmpty: { errorMessage: 'name is required' },
+  },
+  price: {
+    in: 'body',
+    isNumeric: { errorMessage: 'price must be a number' },
+    custom: {
+      options: (value) => {
+        if (value < 0) throw new Error('price cannot be negative');
+        return true;
+      },
+    },
+  },
+};
+
+```
+
+**3. handler.ts** - HTTP handler
+
+```tsx
+import { type NextFunction, type Request, type Response } from 'express';
+import { matchedData } from 'express-validator';
+
+import createProduct from '@services/products/create';
+
+import { type CreateProductRequestDTO } from './types';
+
+const createProductHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const input = matchedData(req) as CreateProductRequestDTO;
+    const product = await createProduct(input);
+    res.status(201).json({ success: true, data: product });
+    return;
+  } catch (error) {
+    return next(error);
+  }
+};
+
+export default createProductHandler;
+
+```
+
+**Router setup**:
+
+```tsx
+import { Router } from 'express';
+import { checkSchema } from 'express-validator';
+import { schemaCheck } from '@middlewares/schemaCheck';
+
+import createProductHandler from './create/handler';
+import createProductSchema from './create/schema';
+
+const router = Router();
+
+router.post('/', checkSchema(createProductSchema), schemaCheck, createProductHandler);
+
+export default router;
+
+```
+
+### Error Handling
+
+```tsx
+// Use throwers in services
+import { throwNotFoundError } from '@errors/throwers/throwNotFoundError';
+import { throwBadRequestError } from '@errors/throwers/throwBadRequestError';
+import { throwUnauthorizedError } from '@errors/throwers/throwUnauthorizedError';
+
+// Example usage
+if (!product) {
+  throwNotFoundError({
+    message: `Product with id ${id} not found`,
+    details: { productId: id },
+  });
+}
+
+if (product.stock < quantity) {
+  throwBadRequestError({
+    message: 'Insufficient stock',
+    details: { available: product.stock, requested: quantity },
+    code: 'INSUFFICIENT_STOCK',
+  });
+}
+
+```

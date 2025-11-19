@@ -1,0 +1,8 @@
+## WHEN IN DOUBT
+
+- Keep handlers thin (just protocol conversion)
+- Keep services focused (single responsibility)
+- Keep models simple (just data structure)
+- Throw errors early (fail fast)
+- Use transactions for multi-step operations
+- Orchestrate in services, not handlers

@@ -1,0 +1,21 @@
+## ARCHITECTURE RULES (NON-NEGOTIABLE)
+
+### Three-Layer Architecture
+
+1. **Routes** (Presentation) → Handle HTTP, validate input, call ONE service
+2. **Services** (Business Logic) → Orchestrate operations, handle business rules
+3. **Models** (Data) → Define schemas, no business logic
+
+### Critical Rules
+
+- ✅ **ALWAYS** use default exports for handlers, schemas, services, and routers
+- ✅ **ALWAYS** use named exports for everything in lib/ (errors, middlewares, utils)
+- ✅ **ALWAYS** use explicit return types on functions
+- ✅ **ALWAYS** use path aliases for imports
+- ✅ **ALWAYS** throw custom errors (never mongoose errors)
+- ✅ **ALWAYS** use `.exec()` with mongoose queries
+- ✅ **ALWAYS** use explicit returns (never implicit)
+- ❌ **NEVER** put business logic in handlers or models
+- ❌ **NEVER** access req/res in services
+- ❌ **NEVER** call multiple services in a handler
+- ❌ **NEVER** return null (throw custom error instead)

@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "target": "es6",
+    "module": "CommonJS",
+    "rootDir": "./src",
+    "outDir": "./build",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "baseUrl": "./src",
+    "paths": {
+      "@models/*": ["database/models/*"],
+      "@models": ["database/models"],
+      "@errors/*": ["api/lib/errors/*"],
+      "@errors": ["api/lib/errors"],
+      "@logs/*": ["api/lib/logs/*"],
+      "@logs": ["api/lib/logs"],
+      "@envs/*": ["api/lib/environment/*"],
+      "@envs": ["api/lib/environment"],
+      "@middlewares/*": ["api/lib/middlewares/*"],
+      "@middlewares": ["api/lib/middlewares"],
+      "@services/*": ["api/services/*"],
+      "@services": ["api/services"],
+      "@utils/*": ["api/lib/utils/*"],
+      "@utils": ["api/lib/utils"],
+      "@routes/*": ["api/routes/*"],
+      "@routes": ["api/routes"],
+    },
+    "typeRoots": [
+      "./src/types",
+      "./node_modules/@types"
+    ]
+  },
+  "include": [
+    "src/**/*",
+    "src/middlewares"
+  ]
+}

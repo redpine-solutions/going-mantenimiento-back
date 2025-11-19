@@ -1,0 +1,15 @@
+## CODE QUALITY
+
+### ESLint Auto-Fixes
+
+- Use `===` instead of `==`
+- Add return types to functions
+- Handle all promises (no floating promises)
+- Remove unused variables (or prefix with `_`)
+
+### Prettier Formatting
+
+- Single quotes for strings
+- 100 character line width
+- Trailing commas (ES5)
+- 2 spaces indentation

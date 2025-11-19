@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+build/
+dist/
+
+# Test coverage
+coverage/
+
+# Logs
+*.log
+
+# Lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# API v1 (excluded as per requirements)
+src/api/v1/
+
+# Config and generated files
+.env
+.env.*
+*.config.js

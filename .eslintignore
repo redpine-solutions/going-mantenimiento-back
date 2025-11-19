@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+build/
+dist/
+*.js
+
+# Test coverage
+coverage/
+
+# Environment files
+.env
+.env.*
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+*.tmp
+.cache/
+
+# API v1 (excluded as per requirements)
+src/api/v1/
+
+# Config files that might not follow strict rules
+*.config.js
+*.config.ts
+jest.config.*

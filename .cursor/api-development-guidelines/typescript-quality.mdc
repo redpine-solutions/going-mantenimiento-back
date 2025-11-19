@@ -1,0 +1,41 @@
+## TYPESCRIPT GUIDELINES
+
+### Always Include Return Types
+
+```tsx
+// ✅ GOOD
+const getProduct = async (id: string): Promise<IProduct> => {
+  return await Product.findById(id).exec();
+};
+
+// ❌ BAD
+const getProduct = async (id: string) => {
+  return Product.findById(id);
+};
+
+```
+
+### Use Type Imports
+
+```tsx
+import { type Document } from 'mongoose';
+import { type Request, type Response } from 'express';
+
+```
+
+### Define Interfaces for Complex Types
+
+```tsx
+interface CreateProductInput {
+  name: string;
+  price: number;
+  description?: string;
+}
+
+interface CreateProductOutput {
+  id: string;
+  name: string;
+  createdAt: Date;
+}
+
+```
