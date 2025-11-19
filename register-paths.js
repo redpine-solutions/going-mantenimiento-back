@@ -6,8 +6,8 @@ const path = require('path');
 tsConfigPaths.register({
   baseUrl: path.resolve(__dirname, './build'),
   paths: {
-    '@models/*': ['database/models/*'],
-    '@models': ['database/models'],
+    '@models/*': ['api/models/*'],
+    '@models': ['api/models'],
     '@errors/*': ['api/lib/errors/*'],
     '@errors': ['api/lib/errors'],
     '@logs/*': ['api/lib/logs/*'],

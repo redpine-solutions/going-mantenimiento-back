@@ -36,7 +36,7 @@ app.use(errorHandler);
 // Start server function
 const startServer = async () => {
   try {
-    // await dbConnect();
+    await dbConnect();
     const PORT = getPort();
 
     app.listen(PORT, () => {

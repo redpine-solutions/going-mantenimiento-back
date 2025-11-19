@@ -1,4 +1,4 @@
-import { type IUser } from '@models/User';
+import { IUser } from '@models/User';
 
 type FindByTokenInput = {
   token: string;

@@ -30,15 +30,19 @@ const userSchema = new Schema<IUser>(
         message: 'Role must be either admin or client',
       },
     },
+    clientId: {
+      type: Schema.Types.ObjectId,
+      ref: 'Client',
+      required: function (): boolean {
+        return this.role === 'client';
+      },
+    },
   },
   {
     timestamps: true,
     collection: 'users',
   }
 );
-
-// Add indexes
-userSchema.index({ username: 1 });
 
 // Pre-save hook to hash password
 userSchema.pre('save', async function (next): Promise<void> {

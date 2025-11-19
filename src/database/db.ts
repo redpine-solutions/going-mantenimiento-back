@@ -1,4 +1,10 @@
-import { getMongoDb, getMongoDbUri, getMongoPass, getMongoUser } from '@envs/vairables';
+import {
+  getMongoCluster,
+  getMongoDb,
+  getMongoDbUri,
+  getMongoPass,
+  getMongoUser,
+} from '@envs/vairables';
 
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
@@ -8,11 +14,11 @@ dotenv.config({
 });
 
 var db = getMongoDb();
-var db_user = getMongoUser();
-var db_password = getMongoPass();
-var uri = getMongoDbUri();
+var dbUser = getMongoUser();
+var dbPassword = getMongoPass();
+var dbCluster = getMongoCluster();
 
-const MONGO_URI = `mongodb+srv://${db_user}:${db_password}@${uri}/${db}`;
+const MONGO_URI = `mongodb+srv://${dbUser}:${dbPassword}@${dbCluster}.mongodb.net/${db}`;
 
 console.log(MONGO_URI);
 
