@@ -1,17 +1,16 @@
 import { type Schema } from 'express-validator';
 
-const updateClientSchema: () => Schema = () => ({
+const createClientSchema: () => Schema = () => ({
   name: {
     in: ['body'],
-    optional: true,
     isString: {
       errorMessage: 'name must be a string',
     },
     notEmpty: {
-      errorMessage: 'name cannot be empty',
+      errorMessage: 'name is required',
     },
     trim: true,
   },
 });
 
-export default updateClientSchema;
+export default createClientSchema;

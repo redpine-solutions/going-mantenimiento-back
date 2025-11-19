@@ -1,5 +1,5 @@
-import User from '@models/User';
 import Client from '@models/Client';
+import User from '@models/User';
 
 import throwBadRequestError from '@errors/throwers/throwBadRequestError';
 import throwNotFoundError from '@errors/throwers/throwNotFoundError';

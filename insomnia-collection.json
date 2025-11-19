@@ -1,0 +1,424 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2025-01-19T00:00:00.000Z",
+  "__export_source": "insomnia.desktop.app:v2023.5.8",
+  "resources": [
+    {
+      "_id": "wrk_going_mantenimiento",
+      "parentId": null,
+      "modified": 1705622400000,
+      "created": 1705622400000,
+      "name": "Going Mantenimiento API",
+      "description": "API para gestión de mantenimiento",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "env_base",
+      "parentId": "wrk_going_mantenimiento",
+      "modified": 1705622400000,
+      "created": 1705622400000,
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:3000/api/v1",
+        "token": ""
+      },
+      "dataPropertyOrder": {
+        "&": ["base_url", "token"]
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1705622400000,
+      "_type": "environment"
+    },
+    {
+      "_id": "env_development",
+      "parentId": "env_base",
+      "modified": 1705622400000,
+      "created": 1705622400000,
+      "name": "Development",
+      "data": {
+        "base_url": "http://localhost:3000/api/v1"
+      },
+      "dataPropertyOrder": {
+        "&": ["base_url"]
+      },
+      "color": "#7d69cb",
+      "isPrivate": false,
+      "metaSortKey": 1705622400001,
+      "_type": "environment"
+    },
+    {
+      "_id": "env_production",
+      "parentId": "env_base",
+      "modified": 1705622400000,
+      "created": 1705622400000,
+      "name": "Production",
+      "data": {
+        "base_url": "https://api.example.com/api/v1"
+      },
+      "dataPropertyOrder": {
+        "&": ["base_url"]
+      },
+      "color": "#ff6b6b",
+      "isPrivate": false,
+      "metaSortKey": 1705622400002,
+      "_type": "environment"
+    },
+    {
+      "_id": "fld_auth",
+      "parentId": "wrk_going_mantenimiento",
+      "modified": 1705622400000,
+      "created": 1705622400000,
+      "name": "Auth",
+      "description": "Autenticación y autorización",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1705622400000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_users",
+      "parentId": "wrk_going_mantenimiento",
+      "modified": 1705622400000,
+      "created": 1705622400000,
+      "name": "Users",
+      "description": "Gestión de usuarios",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1705622300000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_clients",
+      "parentId": "wrk_going_mantenimiento",
+      "modified": 1705622400000,
+      "created": 1705622400000,
+      "name": "Clients",
+      "description": "Gestión de clientes",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1705622200000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_login",
+      "parentId": "fld_auth",
+      "modified": 1705622400000,
+      "created": 1705622400000,
+      "url": "{{ _.base_url }}/auth/login",
+      "name": "Login",
+      "description": "Iniciar sesión con username y password",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"username\": \"admin\",\n  \"password\": \"password123\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1705622400000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_me",
+      "parentId": "fld_auth",
+      "modified": 1705622400000,
+      "created": 1705622400000,
+      "url": "{{ _.base_url }}/auth/me",
+      "name": "Me",
+      "description": "Obtener usuario actual y token",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "x-auth-token",
+          "value": "{{ _.token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1705622300000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_create_user",
+      "parentId": "fld_users",
+      "modified": 1705622400000,
+      "created": 1705622400000,
+      "url": "{{ _.base_url }}/users",
+      "name": "Create User",
+      "description": "Crear un nuevo usuario",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"username\": \"newuser\",\n  \"password\": \"password123\",\n  \"role\": \"admin\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "x-auth-token",
+          "value": "{{ _.token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1705622400000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_create_user_client",
+      "parentId": "fld_users",
+      "modified": 1705622400000,
+      "created": 1705622400000,
+      "url": "{{ _.base_url }}/users",
+      "name": "Create User (Client Role)",
+      "description": "Crear un nuevo usuario con rol client",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"username\": \"clientuser\",\n  \"password\": \"password123\",\n  \"role\": \"client\",\n  \"clientId\": \"YOUR_CLIENT_ID_HERE\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "x-auth-token",
+          "value": "{{ _.token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1705622350000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_update_user",
+      "parentId": "fld_users",
+      "modified": 1705622400000,
+      "created": 1705622400000,
+      "url": "{{ _.base_url }}/users/USER_ID_HERE",
+      "name": "Update User",
+      "description": "Actualizar un usuario existente",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"username\": \"updateduser\",\n  \"password\": \"newpassword123\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "x-auth-token",
+          "value": "{{ _.token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1705622300000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_delete_user",
+      "parentId": "fld_users",
+      "modified": 1705622400000,
+      "created": 1705622400000,
+      "url": "{{ _.base_url }}/users/USER_ID_HERE",
+      "name": "Delete User",
+      "description": "Eliminar un usuario",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "x-auth-token",
+          "value": "{{ _.token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1705622200000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_create_client",
+      "parentId": "fld_clients",
+      "modified": 1705622400000,
+      "created": 1705622400000,
+      "url": "{{ _.base_url }}/clients",
+      "name": "Create Client",
+      "description": "Crear un nuevo cliente",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"New Client Name\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "x-auth-token",
+          "value": "{{ _.token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1705622450000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_list_clients",
+      "parentId": "fld_clients",
+      "modified": 1705622400000,
+      "created": 1705622400000,
+      "url": "{{ _.base_url }}/clients",
+      "name": "List Clients",
+      "description": "Listar todos los clientes",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "x-auth-token",
+          "value": "{{ _.token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1705622400000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_update_client",
+      "parentId": "fld_clients",
+      "modified": 1705622400000,
+      "created": 1705622400000,
+      "url": "{{ _.base_url }}/clients/CLIENT_ID_HERE",
+      "name": "Update Client",
+      "description": "Actualizar un cliente existente",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Updated Client Name\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "x-auth-token",
+          "value": "{{ _.token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1705622300000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_delete_client",
+      "parentId": "fld_clients",
+      "modified": 1705622400000,
+      "created": 1705622400000,
+      "url": "{{ _.base_url }}/clients/CLIENT_ID_HERE",
+      "name": "Delete Client",
+      "description": "Eliminar un cliente",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "x-auth-token",
+          "value": "{{ _.token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1705622200000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    }
+  ]
+}

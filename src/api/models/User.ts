@@ -1,11 +1,11 @@
 import bcrypt from 'bcryptjs';
-import { type Document, model, Schema } from 'mongoose';
+import { type Document, model, Schema, Types } from 'mongoose';
 
 interface IUser extends Document {
   username: string;
   password: string;
   role: 'admin' | 'client';
-  clientId?: Schema.Types.ObjectId;
+  clientId?: Types.ObjectId;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -31,7 +31,7 @@ const userSchema = new Schema<IUser>(
       },
     },
     clientId: {
-      type: Schema.Types.ObjectId,
+      type: Types.ObjectId,
       ref: 'Client',
       required: function (): boolean {
         return this.role === 'client';
