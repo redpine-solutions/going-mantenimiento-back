@@ -1,6 +1,7 @@
 import { type Schema } from 'express-validator';
+import { DefaultSchemaKeys } from 'express-validator/lib/middlewares/schema';
 
-const createUserSchema: () => Schema = () => ({
+const createUserSchema: () => Schema<DefaultSchemaKeys> = () => ({
   username: {
     in: ['body'],
     isString: {
