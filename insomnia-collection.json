@@ -232,6 +232,34 @@
       "_type": "request"
     },
     {
+      "_id": "req_list_users",
+      "parentId": "fld_users",
+      "modified": 1737244800000,
+      "created": 1737244800000,
+      "url": "{{ _.base_url }}/users",
+      "name": "List Users",
+      "description": "Listar todos los usuarios (solo admin)",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "x-auth-token",
+          "value": "{{ _.token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1705622325000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
       "_id": "req_update_user",
       "parentId": "fld_users",
       "modified": 1705622400000,
@@ -348,6 +376,34 @@
       ],
       "authentication": {},
       "metaSortKey": -1705622400000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_get_client",
+      "parentId": "fld_clients",
+      "modified": 1737244800000,
+      "created": 1737244800000,
+      "url": "{{ _.base_url }}/clients/CLIENT_ID_HERE",
+      "name": "Get Client By ID",
+      "description": "Obtener un cliente por su ID",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "x-auth-token",
+          "value": "{{ _.token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1705622350000,
       "isPrivate": false,
       "settingStoreCookies": true,
       "settingSendCookies": true,

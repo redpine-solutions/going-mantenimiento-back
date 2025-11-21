@@ -1,3 +1,4 @@
+import { adminMiddleware } from '@middlewares/auth/adminMiddleware';
 import schemaCheck from '@middlewares/schemaCheck';
 
 import idSchema from '@utils/schema-validators/idSchema';
@@ -14,10 +15,10 @@ const createClientRouter = (): Router => {
   const clientRouter = Router();
 
   // GET /clients - List all clients
-  clientRouter.get('/', schemaCheck(findClientsSchema()), findClientsHandler);
+  clientRouter.get('/', adminMiddleware, schemaCheck(findClientsSchema()), findClientsHandler);
 
   // POST /clients - Create client
-  clientRouter.post('/', schemaCheck(createClientSchema()), createClientHandler);
+  clientRouter.post('/', adminMiddleware, schemaCheck(createClientSchema()), createClientHandler);
 
   clientRouter.use('/:id', schemaCheck(idSchema()), createIdRouter());
 

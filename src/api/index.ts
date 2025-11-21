@@ -23,7 +23,7 @@ app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 
 // Routes
-app.use('/api/v1', mainRouter(), notFoundHandler, errorHandler);
+app.use('/api', mainRouter(), notFoundHandler, errorHandler);
 
 // Health check endpoint
 app.get('/health', (req, res) => {

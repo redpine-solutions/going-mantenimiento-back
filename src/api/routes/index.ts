@@ -1,3 +1,4 @@
+import { adminMiddleware } from '@middlewares/auth/adminMiddleware';
 import authMiddleware from '@middlewares/auth/authMiddleware';
 
 import { Router } from 'express';
@@ -14,7 +15,7 @@ const mainRouter = () => {
 
   // Protected routes
   router.use(authMiddleware);
-  router.use('/users', createUserRouter());
+  router.use('/users', adminMiddleware, createUserRouter());
   router.use('/clients', createClientRouter());
 
   return router;
