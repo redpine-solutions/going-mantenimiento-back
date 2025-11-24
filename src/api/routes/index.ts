@@ -5,6 +5,7 @@ import { Router } from 'express';
 
 import createAuthRouter from './auth';
 import createClientRouter from './client';
+import createMeasurementRouter from './measurement';
 import createUserRouter from './user';
 
 const mainRouter = () => {
@@ -17,6 +18,7 @@ const mainRouter = () => {
   router.use(authMiddleware);
   router.use('/users', adminMiddleware, createUserRouter());
   router.use('/clients', createClientRouter());
+  router.use('/measurements', createMeasurementRouter());
 
   return router;
 };
