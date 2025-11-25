@@ -6,12 +6,8 @@ const findMeasurementsSchema: () => Schema = () => ({
     isMongoId: {
       errorMessage: 'clientId must be a valid MongoId',
     },
-    notEmpty: {
-      errorMessage: 'clientId is required',
-    },
+    optional: true,
   },
 });
 
 export default findMeasurementsSchema;
-
-

@@ -1,7 +1,5 @@
 type FindMeasurementsRequestDTO = {
-  clientId: string;
+  clientId?: string;
 };
 
 export type { FindMeasurementsRequestDTO };
-
-
