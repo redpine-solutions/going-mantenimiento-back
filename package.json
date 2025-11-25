@@ -14,6 +14,8 @@
     "migrate:orion-conditions": "ts-node -r tsconfig-paths/register src/scripts/migrateOrionConditions.ts",
     "count:orion": "ts-node -r tsconfig-paths/register src/scripts/countOrionProduction.ts",
     "sync:specific": "ts-node -r tsconfig-paths/register src/scripts/syncSpecificLoadProductions.ts",
+    "add:demo-measurements": "ts-node -r tsconfig-paths/register -r dotenv/config src/scripts/addDemoMeasurements.ts",
+    "verify:measurements": "ts-node -r tsconfig-paths/register -r dotenv/config src/scripts/verifyMeasurements.ts",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "format": "prettier --write \"src/**/*.{ts,json,md}\"",

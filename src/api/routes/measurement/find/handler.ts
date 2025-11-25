@@ -1,21 +1,25 @@
+import findMeasurements from '@services/measurement/find';
+
 import { type NextFunction, type Request, type Response } from 'express';
 import { matchedData } from 'express-validator';
-
-import findMeasurementsByClient from '@services/measurement/find/byClient';
 
 import { type FindMeasurementsRequestDTO } from './types';
 
 const findMeasurementsHandler = async (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ): Promise<void> => {
   try {
     // 1. Parse input
     const input = matchedData(req) as FindMeasurementsRequestDTO;
+    const clientId =
+      req.user.role === 'client' && req.user.clientId !== undefined
+        ? req.user.clientId.toString()
+        : input.clientId;
 
     // 2. Call service
-    const result = await findMeasurementsByClient(input);
+    const result = await findMeasurements({ ...input, clientId });
 
     // 3. Return response
     res.status(200).json({
@@ -30,5 +34,3 @@ const findMeasurementsHandler = async (
 };
 
 export default findMeasurementsHandler;
-
-
