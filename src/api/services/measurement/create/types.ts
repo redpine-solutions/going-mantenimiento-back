@@ -7,6 +7,7 @@ type CreateMeasurementInput = {
   unsatisfactory: number;
   danger: number;
   unmeasured: number;
+  opening: string;
   clientId: string;
 };
 

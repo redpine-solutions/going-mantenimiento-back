@@ -7,6 +7,7 @@ interface IMeasurement extends Document {
   unsatisfactory: number;
   danger: number;
   unmeasured: number;
+  opening: string;
   clientId: Types.ObjectId;
   createdAt: Date;
   updatedAt: Date;
@@ -42,6 +43,10 @@ const measurementSchema = new Schema<IMeasurement>(
       type: Number,
       required: [true, 'Unmeasured is required'],
       min: 0,
+    },
+    opening: {
+      type: String,
+      required: [true, 'Opening is required'],
     },
     clientId: {
       type: Schema.Types.ObjectId,

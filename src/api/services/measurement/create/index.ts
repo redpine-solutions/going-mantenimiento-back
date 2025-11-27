@@ -3,7 +3,7 @@ import Measurement from '@models/Measurement';
 import { type CreateMeasurementInput, type CreateMeasurementOutput } from './types';
 
 const createMeasurement = async (input: CreateMeasurementInput): Promise<CreateMeasurementOutput> => {
-  const { date, good, observation, unsatisfactory, danger, unmeasured, clientId } = input;
+  const { date, good, observation, unsatisfactory, danger, unmeasured, clientId, opening } = input;
 
   const measurement = await Measurement.create({
     date,
@@ -12,6 +12,7 @@ const createMeasurement = async (input: CreateMeasurementInput): Promise<CreateM
     unsatisfactory,
     danger,
     unmeasured,
+    opening,
     clientId,
   });
 

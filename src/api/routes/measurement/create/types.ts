@@ -5,6 +5,7 @@ type CreateMeasurementRequestDTO = {
   unsatisfactory: number;
   danger: number;
   unmeasured: number;
+  opening: string;
   clientId: string;
 };
 

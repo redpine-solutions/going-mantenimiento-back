@@ -114,6 +114,7 @@ const generateDemoMeasurements = () => {
 
       measurements.push({
         date: measurementDate,
+        opening: 'Centro distribucion',
         good: baseGood,
         observation: baseObservation,
         unsatisfactory: baseUnsatisfactory,

@@ -18,6 +18,9 @@ const findMeasurementsHandler = async (
         ? req.user.clientId.toString()
         : input.clientId;
 
+  if (!clientId) {
+    throw new Error('Client ID is required');
+  }
     // 2. Call service
     const result = await findMeasurements({ ...input, clientId });
 

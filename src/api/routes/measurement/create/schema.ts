@@ -40,6 +40,15 @@ const createMeasurementSchema: () => Schema = () => ({
     },
     toInt: true,
   },
+  opening: {
+    in: ['body'],
+    isString: {
+      errorMessage: 'opening must be a string',
+    },
+    notEmpty: {
+      errorMessage: 'opening is required',
+    },
+  },
   unmeasured: {
     in: ['body'],
     isInt: {
