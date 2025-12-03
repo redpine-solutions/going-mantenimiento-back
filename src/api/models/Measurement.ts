@@ -1,7 +1,9 @@
 import { type Document, model, Schema, Types } from 'mongoose';
 
 interface IMeasurement extends Document {
-  date: Date;
+  year: number;
+  month: number; // 1-12
+  monthIndex: number; // year*12 + (month - 1)
   good: number;
   observation: number;
   unsatisfactory: number;
@@ -15,9 +17,21 @@ interface IMeasurement extends Document {
 
 const measurementSchema = new Schema<IMeasurement>(
   {
-    date: {
-      type: Date,
-      required: [true, 'Date is required'],
+    year: {
+      type: Number,
+      required: [true, 'Year is required'],
+      min: 1970,
+    },
+    month: {
+      type: Number,
+      required: [true, 'Month is required'],
+      min: 1,
+      max: 12,
+    },
+    monthIndex: {
+      type: Number,
+      required: [true, 'MonthIndex is required'],
+      min: 0,
     },
     good: {
       type: Number,
@@ -61,7 +75,7 @@ const measurementSchema = new Schema<IMeasurement>(
 );
 
 // Index for common queries
-measurementSchema.index({ clientId: 1, date: -1 });
+measurementSchema.index({ clientId: 1, monthIndex: 1 });
 
 const Measurement = model<IMeasurement>('Measurement', measurementSchema);
 

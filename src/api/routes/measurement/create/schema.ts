@@ -1,12 +1,21 @@
 import { type Schema } from 'express-validator';
 
 const createMeasurementSchema: () => Schema = () => ({
-  date: {
+  year: {
     in: ['body'],
-    isISO8601: {
-      errorMessage: 'date must be a valid ISO8601 date',
+    isInt: {
+      options: { min: 1970 },
+      errorMessage: 'year must be an integer >= 1970',
     },
-    toDate: true,
+    toInt: true,
+  },
+  month: {
+    in: ['body'],
+    isInt: {
+      options: { min: 1, max: 12 },
+      errorMessage: 'month must be an integer between 1 and 12',
+    },
+    toInt: true,
   },
   good: {
     in: ['body'],

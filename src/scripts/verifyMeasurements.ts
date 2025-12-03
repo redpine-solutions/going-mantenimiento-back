@@ -34,7 +34,7 @@ const verifyMeasurements = async (): Promise<void> => {
 
     const measurements = await Measurement
       .find({ clientId: new mongoose.Types.ObjectId(CLIENT_ID) })
-      .sort({ date: 1 })
+      .sort({ monthIndex: 1 })
       .exec();
 
     console.log(`Total de mediciones encontradas: ${measurements.length}\n`);
@@ -43,7 +43,8 @@ const verifyMeasurements = async (): Promise<void> => {
       console.log('Detalle de las mediciones:\n');
       measurements.forEach((measurement, index) => {
         console.log(`${index + 1}. ID: ${measurement._id}`);
-        console.log(`   Fecha: ${measurement.date.toISOString().split('T')[0]}`);
+        const ym = `${measurement.year}-${String(measurement.month).padStart(2, '0')}`;
+        console.log(`   Periodo: ${ym}`);
         console.log(`   Bueno: ${measurement.good}`);
         console.log(`   Observación: ${measurement.observation}`);
         console.log(`   Insatisfactorio: ${measurement.unsatisfactory}`);

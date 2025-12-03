@@ -112,8 +112,14 @@ const generateDemoMeasurements = () => {
       baseDanger = Math.max(0, baseDanger);
       baseUnmeasured = Math.max(0, baseUnmeasured);
 
+      const year = measurementDate.getUTCFullYear();
+      const month = measurementDate.getUTCMonth() + 1; // 1-12
+      const monthIndex = year * 12 + (month - 1);
+
       measurements.push({
-        date: measurementDate,
+        year,
+        month,
+        monthIndex,
         opening: 'Centro distribucion',
         good: baseGood,
         observation: baseObservation,
@@ -125,8 +131,8 @@ const generateDemoMeasurements = () => {
     }
   }
 
-  // Ordenar por fecha
-  measurements.sort((a, b) => a.date.getTime() - b.date.getTime());
+  // Ordenar por periodo (año/mes)
+  measurements.sort((a, b) => a.monthIndex - b.monthIndex);
 
   return measurements;
 };
@@ -149,9 +155,10 @@ const addDemoMeasurements = async (): Promise<void> => {
     const demoMeasurements = generateDemoMeasurements();
 
     console.log(`\nTotal de mediciones a insertar: ${demoMeasurements.length}`);
-    console.log('\nDetalle de las mediciones:');
+    console.log('\nDetalle de las mediciones (YYYY-MM):');
     demoMeasurements.forEach((measurement, index) => {
-      console.log(`\n${index + 1}. Fecha: ${measurement.date.toISOString().split('T')[0]}`);
+      const ym = `${measurement.year}-${String(measurement.month).padStart(2, '0')}`;
+      console.log(`\n${index + 1}. Periodo: ${ym}`);
       console.log(`   - Bueno: ${measurement.good}`);
       console.log(`   - Observación: ${measurement.observation}`);
       console.log(`   - Insatisfactorio: ${measurement.unsatisfactory}`);
@@ -164,9 +171,10 @@ const addDemoMeasurements = async (): Promise<void> => {
     const result = await Measurement.insertMany(demoMeasurements);
 
     console.log(`\n✓ Éxito: Se insertaron ${result.length} mediciones correctamente`);
-    console.log('\nIDs de las mediciones insertadas:');
+    console.log('\nIDs de las mediciones insertadas (YYYY-MM):');
     result.forEach((measurement, index) => {
-      console.log(`${index + 1}. ${measurement._id} - ${measurement.date.toISOString().split('T')[0]}`);
+      const ym = `${measurement.year}-${String(measurement.month).padStart(2, '0')}`;
+      console.log(`${index + 1}. ${measurement._id} - ${ym}`);
     });
 
   } catch (error) {

@@ -1,5 +1,6 @@
 type CreateMeasurementRequestDTO = {
-  date: Date;
+  year: number;
+  month: number;
   good: number;
   observation: number;
   unsatisfactory: number;

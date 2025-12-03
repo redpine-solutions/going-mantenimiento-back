@@ -1,7 +1,8 @@
 import { type IMeasurement } from '@models/Measurement';
  
 type CreateMeasurementInput = {
-  date: Date;
+  year: number;
+  month: number;
   good: number;
   observation: number;
   unsatisfactory: number;

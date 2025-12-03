@@ -475,6 +475,81 @@
       "settingRebuildPath": true,
       "settingFollowRedirects": "global",
       "_type": "request"
+    },
+    {
+      "_id": "fld_measurements",
+      "parentId": "wrk_going_mantenimiento",
+      "modified": 1733333333000,
+      "created": 1733333333000,
+      "name": "Measurements",
+      "description": "Gestión de mediciones mensuales",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1705622100000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_create_measurement",
+      "parentId": "fld_measurements",
+      "modified": 1733333333001,
+      "created": 1733333333001,
+      "url": "{{ _.base_url }}/measurements",
+      "name": "Create Measurement",
+      "description": "Crear medición mensual (year, month, valores, opening, clientId)",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"year\": 2025,\n  \"month\": 1,\n  \"good\": 10,\n  \"observation\": 5,\n  \"unsatisfactory\": 2,\n  \"danger\": 1,\n  \"unmeasured\": 0,\n  \"opening\": \"Centro distribucion\",\n  \"clientId\": \"YOUR_CLIENT_ID_HERE\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "x-auth-token",
+          "value": "{{ _.token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1705622100000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_find_measurements",
+      "parentId": "fld_measurements",
+      "modified": 1733333333002,
+      "created": 1733333333002,
+      "url": "{{ _.base_url }}/measurements?clientId=YOUR_CLIENT_ID_HERE&last12=true",
+      "name": "Find Measurements (last 12 months)",
+      "description": "Listar mediciones por cliente (últimos 12 meses). También soporta year/month.",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "x-auth-token",
+          "value": "{{ _.token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1705622090000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
     }
   ]
 }
