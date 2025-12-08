@@ -112,6 +112,35 @@ const generateDemoMeasurements = () => {
       baseDanger = Math.max(0, baseDanger);
       baseUnmeasured = Math.max(0, baseUnmeasured);
 
+      // Generar valores aleatorios para los nuevos campos de causas/condiciones (0-30)
+      const coupling = Math.floor(Math.random() * 31);
+      const mounting = Math.floor(Math.random() * 31);
+      const externalCause = Math.floor(Math.random() * 31);
+      const cavitation = Math.floor(Math.random() * 31);
+      const bearing = Math.floor(Math.random() * 31);
+      const plainBearing = Math.floor(Math.random() * 31);
+      const belts = Math.floor(Math.random() * 31);
+      const structuralDeficiency = Math.floor(Math.random() * 31);
+      const misalignment = Math.floor(Math.random() * 31);
+      const unbalance = Math.floor(Math.random() * 31);
+      const componentWear = Math.floor(Math.random() * 31);
+      const shaft = Math.floor(Math.random() * 31);
+      const electrical = Math.floor(Math.random() * 31);
+      const gear = Math.floor(Math.random() * 31);
+      const aerodynamicForces = Math.floor(Math.random() * 31);
+      const hydraulicForces = Math.floor(Math.random() * 31);
+      const lubrication = Math.floor(Math.random() * 31);
+      const operational = Math.floor(Math.random() * 31);
+      const productLoss = Math.floor(Math.random() * 31);
+      const resonance = Math.floor(Math.random() * 31);
+      const friction = Math.floor(Math.random() * 31);
+      const rollingBearing = Math.floor(Math.random() * 31);
+      const sensorNoSignal = Math.floor(Math.random() * 31);
+      const safety = Math.floor(Math.random() * 31);
+      const noTechnicalInfo = Math.floor(Math.random() * 31);
+      const mechanicalLooseness = Math.floor(Math.random() * 31);
+      const powerTransmission = Math.floor(Math.random() * 31);
+
       const year = measurementDate.getUTCFullYear();
       const month = measurementDate.getUTCMonth() + 1; // 1-12
       const monthIndex = year * 12 + (month - 1);
@@ -120,12 +149,39 @@ const generateDemoMeasurements = () => {
         year,
         month,
         monthIndex,
-        opening: 'Centro distribucion',
+        opening: 'Ruta 2',
         good: baseGood,
         observation: baseObservation,
         unsatisfactory: baseUnsatisfactory,
         danger: baseDanger,
         unmeasured: baseUnmeasured,
+        coupling,
+        mounting,
+        externalCause,
+        cavitation,
+        bearing,
+        plainBearing,
+        belts,
+        structuralDeficiency,
+        misalignment,
+        unbalance,
+        componentWear,
+        shaft,
+        electrical,
+        gear,
+        aerodynamicForces,
+        hydraulicForces,
+        lubrication,
+        operational,
+        productLoss,
+        resonance,
+        friction,
+        rollingBearing,
+        sensorNoSignal,
+        safety,
+        noTechnicalInfo,
+        mechanicalLooseness,
+        powerTransmission,
         clientId: new mongoose.Types.ObjectId(CLIENT_ID),
       });
     }
@@ -146,10 +202,10 @@ const addDemoMeasurements = async (): Promise<void> => {
 
     // Eliminar mediciones existentes del cliente
     console.log(`\nEliminando mediciones existentes del cliente: ${CLIENT_ID}`);
-    const deleteResult = await Measurement.deleteMany({
-      clientId: new mongoose.Types.ObjectId(CLIENT_ID),
-    });
-    console.log(`✓ Se eliminaron ${deleteResult.deletedCount} mediciones existentes`);
+  //  const deleteResult = await Measurement.deleteMany({
+ //     clientId: new mongoose.Types.ObjectId(CLIENT_ID),
+ //   });
+ //   console.log(`✓ Se eliminaron ${deleteResult.deletedCount} mediciones existentes`);
 
     console.log(`\nGenerando mediciones de demostración para el cliente: ${CLIENT_ID}`);
     const demoMeasurements = generateDemoMeasurements();
