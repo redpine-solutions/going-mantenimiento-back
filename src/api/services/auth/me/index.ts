@@ -6,10 +6,14 @@ const me = async (input: MeInput): Promise<MeOutput> => {
   const { token } = input;
 
   // 1. Get user from token
-  const { user } = await findByToken({ token });
+  const { user, clientName } = await findByToken({ token });
 
   // 2. Return explicit result
-  return { token, user };
+  return {
+    token,
+    user,
+    clientName,
+  };
 };
 
 export default me;

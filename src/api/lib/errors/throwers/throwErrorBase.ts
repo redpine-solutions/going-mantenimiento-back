@@ -1,6 +1,6 @@
 import CustomError from '../custom/customError';
 
-const throwErrorBase = (error: CustomError) => {
+const throwErrorBase = (error: CustomError): never => {
   if (error.builtError) {
     throw error;
   }

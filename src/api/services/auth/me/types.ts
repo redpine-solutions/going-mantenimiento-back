@@ -7,6 +7,7 @@ type MeInput = {
 type MeOutput = {
   token: string;
   user: IUser;
+  clientName?: string;
 };
 
 export type { MeInput, MeOutput };

@@ -1,4 +1,5 @@
 import User, { IUser } from '@models/User';
+import Client from '@models/Client';
 
 import throwUnauthorizedError from '@errors/throwers/throwUnauthorizedError';
 
@@ -33,8 +34,18 @@ const findByToken = async (input: FindByTokenInput): Promise<FindByTokenOutput> 
     });
   }
 
-  // 4. Return explicit result
-  return { user: user as unknown as IUser };
+  // 4. Get client name if user has clientId
+  let clientName: string | undefined;
+  if (user!.clientId) {
+    const client = await Client.findById(user!.clientId).select('name').lean().exec();
+    clientName = client?.name;
+  }
+
+  // 5. Return explicit result
+  return {
+    user: user! as unknown as IUser,
+    clientName,
+  };
 };
 
 export default findByToken;

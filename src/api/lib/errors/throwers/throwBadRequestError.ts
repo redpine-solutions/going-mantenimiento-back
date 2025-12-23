@@ -10,6 +10,6 @@ const throwBadRequestError = ({
   message,
   name = 'BadRequestError',
   code = undefined,
-}: ThrowBadRequestError) => throwErrorBase(buildBadRequestError({ message, name, code }));
+}: ThrowBadRequestError): never => throwErrorBase(buildBadRequestError({ message, name, code }));
 
 export default throwBadRequestError;
