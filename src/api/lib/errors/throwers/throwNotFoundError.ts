@@ -11,6 +11,6 @@ const throwNotFound = ({
   message,
   name = 'NotFoundError',
   code = undefined,
-}: ThrowNotFoundErrorParams) => throwErrorBase(buildNotFoundError({ message, name, code }));
+}: ThrowNotFoundErrorParams): never => throwErrorBase(buildNotFoundError({ message, name, code }));
 
 export default throwNotFound;

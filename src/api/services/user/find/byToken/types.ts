@@ -6,6 +6,7 @@ type FindByTokenInput = {
 
 type FindByTokenOutput = {
   user: IUser;
+  clientName?: string;
 };
 
 export type { FindByTokenInput, FindByTokenOutput };

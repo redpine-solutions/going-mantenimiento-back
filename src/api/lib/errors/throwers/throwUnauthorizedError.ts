@@ -11,6 +11,6 @@ const throwUnauthorizedError = ({
   message,
   name = 'UnauthorizedError',
   code = undefined,
-}: ThrowUnauthorizedErrorParams) => throwErrorBase(buildUnauthorizedError({ message, name, code }));
+}: ThrowUnauthorizedErrorParams): never => throwErrorBase(buildUnauthorizedError({ message, name, code }));
 
 export default throwUnauthorizedError;
