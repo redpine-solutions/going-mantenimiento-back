@@ -39,6 +39,8 @@ interface IMeasurement extends Document {
   noTechnicalInfo: number; // SIN INFO. TÉCNICA
   mechanicalLooseness: number; // SOLTURA MECÁNICA
   powerTransmission: number; // TRANSMISIÓN DE POTENCIA
+  pumpComponents: number; // COMPONENTES BOMBA
+  electricMotor: number; // MOTOR ELÉCTRICO
   createdAt: Date;
   updatedAt: Date;
 }
@@ -228,6 +230,16 @@ const measurementSchema = new Schema<IMeasurement>(
     powerTransmission: {
       type: Number,
       required: [true, 'Power transmission is required'],
+      min: 0,
+    },
+    pumpComponents: {
+      type: Number,
+      required: [true, 'Pump components is required'],
+      min: 0,
+    },
+    electricMotor: {
+      type: Number,
+      required: [true, 'Electric motor is required'],
       min: 0,
     },
   },

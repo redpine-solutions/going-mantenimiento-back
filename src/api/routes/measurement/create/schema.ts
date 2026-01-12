@@ -288,6 +288,22 @@ const createMeasurementSchema: () => Schema = () => ({
     },
     toInt: true,
   },
+  pumpComponents: {
+    in: ['body'],
+    isInt: {
+      options: { min: 0 },
+      errorMessage: 'pumpComponents must be a non-negative integer',
+    },
+    toInt: true,
+  },
+  electricMotor: {
+    in: ['body'],
+    isInt: {
+      options: { min: 0 },
+      errorMessage: 'electricMotor must be a non-negative integer',
+    },
+    toInt: true,
+  },
 });
 
 export default createMeasurementSchema;
