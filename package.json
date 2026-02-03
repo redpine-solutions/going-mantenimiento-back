@@ -17,6 +17,7 @@
     "add:demo-measurements": "ts-node -r tsconfig-paths/register -r dotenv/config src/scripts/addDemoMeasurements.ts",
     "verify:measurements": "ts-node -r tsconfig-paths/register -r dotenv/config src/scripts/verifyMeasurements.ts",
     "load:measurements": "ts-node -r tsconfig-paths/register -r dotenv/config src/scripts/loadMeasurementsFromExcel.ts",
+    "load:measurements:cialp2": "ts-node -r tsconfig-paths/register -r dotenv/config src/scripts/loadMeasurementsCIALP2.ts",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "format": "prettier --write \"src/**/*.{ts,json,md}\"",
